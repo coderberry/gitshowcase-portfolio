@@ -11,13 +11,12 @@ run.config:
     - nginx
 
 deploy.config:
-  extra_steps:
-    - rake assets:precompile
-
   transform:
-    - rake db:setup_or_migrate
+    - gem install bundle
+    - bundle install
+    - rake db:setup
 
-# add a database
+# add a databas
 data.db:
   image: nanobox/postgresql:9.5
 
