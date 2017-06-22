@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   match '/500', to: 'pages#internal_server_error', via: :all, as: :internal_server_error
 
   # GitShowcase.com
-  constraints domain: ENV['APP_DOMAIN'] || 'localhost' do
+  constraints do
     # Pages
     get '/license', to: 'pages#license'
     get '/privacy_policy', to: 'pages#privacy_policy'
