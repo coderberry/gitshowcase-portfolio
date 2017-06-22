@@ -15,6 +15,7 @@ deploy.config:
     - gem install bundle
     - bundle install
     - rake db:setup
+    - redis-server --daemonize yes
 
 # add a databas
 data.db:
