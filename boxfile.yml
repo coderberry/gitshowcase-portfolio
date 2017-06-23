@@ -5,20 +5,22 @@ run.config:
   engine.config:
     runtime: ruby-2.4.0
 
-# add extra packages
+  # add extra packages
   extra_packages:
     - nodejs
     - nginx
 
-deploy.config:
-  transform:
+  extra_steps:
     - gem install bundle
     - bundle install
-    - rake db:create
-    - rake db:migrate
-    - redis-server --daemonize yes
 
-# add a databas
+deploy.config:
+  before_live:
+    web.main:
+      - rake db:create
+      - rake db:migrate
+
+# add a database
 data.db:
   image: nanobox/postgresql:9.5
 
@@ -43,3 +45,10 @@ web.main:
 # add a worker component and give it a "start" command
 # worker.main:
 #   start: sidekiq
+#
+#   writable_dirs:
+#     - tmp
+#     - log
+#
+#   log_watch:
+#     rails: 'log/production.log'
