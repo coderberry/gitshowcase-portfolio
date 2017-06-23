@@ -16,7 +16,6 @@ deploy.config:
     - bundle install
     - rake db:create
     - rake db:migrate
-    - redis-cli shutdown
     - redis-server --daemonize yes
 
 # add a databas
